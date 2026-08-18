@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import ReactDOM from "react-dom/client";
 import { signOut } from "firebase/auth";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./index.css";
 import { auth } from "./firebase.js";
 import { createCloudStorage } from "./cloud-storage.js";
@@ -40,7 +41,12 @@ function AuthedApp({ user }) {
 }
 
 function Root() {
-  return <AuthGate>{(user) => <AuthedApp user={user} />}</AuthGate>;
+  return (
+    <>
+      <AuthGate>{(user) => <AuthedApp user={user} />}</AuthGate>
+      <SpeedInsights />
+    </>
+  );
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
